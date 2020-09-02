@@ -1,17 +1,27 @@
 var pokemonRepository = (function () 
 {
-    var pokemonList = [];
     var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-    function showModal(pokemage, pokename, pokeheight) {
-        console.log("show");
+    function showModal(pokmage, pokename, pokeheight) {
+     
+      var closeButton = $('<button class="modal-close">Close</button>').on('click', hideModal)
+      var img = $('<img id="pokemage">').attr('src', pokmage);
+      var name = $('<h1>').text(pokename);
+      var height = $('<p>').text(pokeheight);
+      var modal = $('<div class="modal">').append(img).append(name).append(height).append(closeButton)
+      $('#modal-container').text('').append(modal);
     }
 
+    function hideModal() {
+        var modalContainer = $('#modal-container').removeClass('is-visible');
+        console.log("please close");
+    }
+    
     function showDetails(pokemon) {
-        loadDetails(pokemon)
-        // loadDetails(pokemon).then(function () {
-        //     showModal(pokemon.imageUrl, pokemon.name, pokemon.height)
-        // })
+        loadDetails(pokemon).then(function () {
+            var modalContainer = $('#modal-container').addClass('is-visible');
+            showModal(pokemon.image, pokemon.name, pokemon.height)
+        })
     }
     
     function listener (button, pokemon) {
@@ -45,9 +55,9 @@ var pokemonRepository = (function ()
     }
 
     function loadDetails(item) {
-         var url = item.detailsUrl;
+         var url = item.url;
         return $.ajax(url, { dataType: 'json'}).then(function (details) {
-         item.imageUrl = details.sprites.front_default;
+         item.image = details.sprites.front_default;
          item.height = details.height;
          item.types = details.types;
         }).catch(function () {
@@ -56,17 +66,7 @@ var pokemonRepository = (function ()
       }
     return {
         loadList: loadList,
-        getAll: getAll,
-        addListItem: addListItem
     };
 })();
 
-
-
-
-pokemonRepository.loadList().then(function() {
-    // $(pokemonRepository.getAll).each(function(pokemon) {
-    //     pokemonRepository.addListItem(pokemon);
-    //     console.log("passing")
-    // });
-});
+pokemonRepository.loadList()
