@@ -24,7 +24,7 @@ body {
   overflow: auto; 
   
   /* this is used to center the modal */
-  display: block;
+  display: grid;
   text-align: center;
 }
 
