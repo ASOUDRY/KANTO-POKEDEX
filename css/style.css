@@ -1,6 +1,12 @@
 html, 
 body {
   font-family: Arial, sans-serif;
+  background-image: linear-gradient(to bottom, brown, blue, yellow, green, purple, pink, red, #987654);
+}
+
+.pokemon-list {
+  list-style-type: none;
+  text-align: center;;
 }
 
 #modal-container {
@@ -33,6 +39,7 @@ body {
   display: inline-block;
   box-sizing: border-box;
   background: #fff;
+  /*background: #fff;*/
   padding: 15px;
   width: 100%;
   max-width: 700px;
@@ -54,4 +61,18 @@ body {
 
 .modal p {
   margin-bottom: 0;
+}
+
+.button {
+  background-image: linear-gradient(to bottom, red, blue, grey); /* Green */
+  border: none;
+  color: black;
+  margin-top: 5px;
+margin-bottom: 5px;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: "Wingdings 3";
 }
