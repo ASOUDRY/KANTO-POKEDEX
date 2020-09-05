@@ -33,7 +33,10 @@ var pokemonList = [];
 
 	function hideModal() {
     var modalContainer = $('#modal-container');
-    modalContainer.removeClass('is-visible');
+    modalContainer.removeClass('is-visible').empty();
+
+    // var modal = $('<div class="modal">');
+    // modal.empty()
     }
     // e key is escape key
 
@@ -69,7 +72,7 @@ var pokemonList = [];
 	function addListItem(pokemon) {
 		var poke = $('.pokemon-list');
 		var listItem = $('<li>');
-		var button = $('<button>').text(pokemon.name);
+		var button = $('<button class="button">').text(pokemon.name);
 		listener(button, pokemon);
 		listItem.append(button);
 		poke.append(listItem);
@@ -88,7 +91,9 @@ var pokemonList = [];
 	}
     // clears the console
 	function hideLoadingMessage() {
-		console.clear();
+		// console.clear();
+		console.log("meh")
+	
 	}
 
 	function loadList() {
@@ -97,8 +102,6 @@ var pokemonList = [];
 	    	hideLoadingMessage()
 	    	$.each(response.results, function ( index, pokemon) {
 	        addListItem(pokemon)
-	    }).catch(() => {
-	    	console.error("error")
 	    })
 	  } )}
 	function loadDetails(item) {
@@ -110,8 +113,6 @@ var pokemonList = [];
 	      item.imageUrl = details.sprites.front_default;
 	      item.height = details.height;
 	      item.types = details.types;
-	  }).catch(() => {
-	  	console.error("error")
 	  })
 	  }
 	  // The properties the repository can return
@@ -127,3 +128,4 @@ pokemonRepository.loadList()
 //     pokemonRepository.addListItem(pokemon);
 //   });
 // });
+
