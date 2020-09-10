@@ -1,6 +1,6 @@
 html, 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'MedievalSharp', cursive;
   background-image: linear-gradient(to bottom, brown, blue, yellow, green, purple, pink, red, #987654);
 }
 
@@ -38,7 +38,8 @@ body {
   margin: auto;
   display: inline-block;
   box-sizing: border-box;
-  background: #fff;
+  background-image: linear-gradient(to right, red, blue, green, yellow);
+  /*background: #fff;*/
   /*background: #fff;*/
   padding: 15px;
   width: 100%;
@@ -74,5 +75,4 @@ margin-bottom: 5px;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  font-family: "Wingdings 3";
 }
