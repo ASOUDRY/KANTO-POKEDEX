@@ -5,57 +5,23 @@ var pokemonList = [];
 
 	// Modular Code Starts here
       function showModal(pokemage, pokename, pokeheight) {
-	  var modalContainer = $('#modal-container');
+    let modalBody = $(".modal-body")
+	let modalTitle = $(".modal-Title")
+	let modalHeader = $(".modal-header")
 
-	  modalContainer.innerHTML = '';
+	modalTitle.empty()
+	modalBody.empty()
 
-	  var modal = $('<div class="modal">');
+	let nameElement = $('"<h1>" + pokename </h1>');
+	let imageElement = $('<img class="modal_img" style="width:50%">').attr('"src", pokemage');
+	let heightElement = $('"<p>" + pokeheight + "</p>"');
 
-  	  var closeButtonElement = $('<button class="modal-close">').text("Close").on('click', hideModal);
-
-      // Create the three Elements
-      var img = $('<img id="entry">').attr('src', pokemage);
-
-	  var name = $('<h1>').text(pokename);
-  	  
-
-	  var height = $('<p>').text(pokeheight);
-	  
-      // actually attaching the code to a button
-      modal.append(img);
-      modal.append(closeButtonElement);
-	  modal.append(name);
-  	  modal.append(height);
-      modalContainer.append(modal);
-
-	  modalContainer.addClass('is-visible');
-	}
-
-	function hideModal() {
-    var modalContainer = $('#modal-container');
-    modalContainer.removeClass('is-visible').empty();
-
-    // var modal = $('<div class="modal">');
-    // modal.empty()
-    }
-    // e key is escape key
-
-	$(window).on('keydown', (e) => {
-	  var modalContainer = $('#modal-container');
-	  if (e.key === 'Escape' && modalContainer.hasClass('is-visible')) {
-	    hideModal();  
-	  }
-      modalContainer.on('click', (e) => {
-		  // Since this is also triggered when clicking INSIDE the modal
-		  // We only want to close if the user clicks directly on the overlay
-		  var target = e.target;
-		  if (target === modalContainer) {
-		    hideModal();
-		  }
-		});
-	});
-
+	modalTitle.append(nameElement);
+	modalBody.append(imageElement);
+	modalBody.append(heightElement);
+}
 	// Modular Code Ends Here
+      
 
 	function showDetails(pokemon) {
 	  	loadDetails(pokemon).then(function () {
@@ -72,43 +38,23 @@ var pokemonList = [];
 	function addListItem(pokemon) {
 		var poke = $('.pokemon-list');
 		var listItem = $('<li>');
-		var button = $('<button class="button">').text(pokemon.name);
+		var button = $('<button class="btn btn-primary">').text(pokemon.name).attr('data-toggle="modal"', '').attr('data-target="#exampleModal"', '');
 		listener(button, pokemon);
 		listItem.append(button);
 		poke.append(listItem);
 	};
 
-	// function getAll() {
-	// 		return pokemonList;
-	// 	};
-
-	// function add(pokemon) {
-	// 		pokemonList.push(pokemon);	
-	// 	};
-
-	function showLoadingMessage() {
-          console.log("Booting up the Pokedex");
-	}
-    // clears the console
-	function hideLoadingMessage() {
-		// console.clear();
-		console.log("meh")
 	
-	}
 
 	function loadList() {
-		showLoadingMessage()
 	    return $.ajax(apiUrl, {dataType: 'json'}).then(function (response) {
-	    	hideLoadingMessage()
 	    	$.each(response.results, function ( index, pokemon) {
 	        addListItem(pokemon)
 	    })
 	  } )}
 	function loadDetails(item) {
-		showLoadingMessage()
 	    var url = item.url;
 	    return $.ajax(url, {dataType: 'json'}).then(function (details) {
-	    	hideLoadingMessage()
 	      // Now we add the details to the item
 	      item.imageUrl = details.sprites.front_default;
 	      item.height = details.height;
@@ -128,4 +74,5 @@ pokemonRepository.loadList()
 //     pokemonRepository.addListItem(pokemon);
 //   });
 // });
+
 
