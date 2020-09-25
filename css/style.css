@@ -64,7 +64,7 @@ modal p {
   margin-bottom: 0;
 }
 
-.button {
+.btn {
   background-image: linear-gradient(to bottom, red, blue, grey); /* Green */
   border: none;
   color: black;
