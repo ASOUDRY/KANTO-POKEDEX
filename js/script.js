@@ -12,12 +12,12 @@ var pokemonList = [];
 	}
 
 	function addListItem(pokemon) {
-		var poke = $('.pokemon-list');
-		var listItem = $('<li>');
-		var button = $('<button class="btn btn-primary">').text(pokemon.name).attr('data-toggle', 'modal').attr('data-target', '#exampleModal');
+		var poke = $('.list-group');
+		// var listItem = $('<li>');
+		var button = $('<button class="btn btn-primary list-group-item list-group-item-action">').text(pokemon.name).attr('data-toggle', 'modal').attr('data-target', '#exampleModal');
 		listener(button, pokemon);
-		listItem.append(button);
-		poke.append(listItem);
+		// listItem.append(button);
+		poke.append(button);
 	};
 
 	function listener (button, pokemon) {
