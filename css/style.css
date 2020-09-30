@@ -4,11 +4,6 @@ body {
   background-image: linear-gradient(to bottom, brown, blue, yellow, green, purple, pink, red, #987654);
 }
 
-.pokemon-list {
-  list-style-type: none;
-  text-align: center;;
-}
-
 .module-color {
 background-image: linear-gradient(to right, red, blue, green, yellow);
 }
